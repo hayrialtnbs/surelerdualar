@@ -16,10 +16,11 @@ const KuranCardStyle = StyleSheet.create({
         height: 60,
         width: "90%",
         padding: 15,
-        margin: 15
+        margin: 15,
     },
     card: {
         flex: 1,
+        alignItems:"center"
     }
 })
 

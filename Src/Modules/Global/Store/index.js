@@ -29,10 +29,12 @@ class GlobalStore {
         this.Loading = value
     }
     setStatus(value) {
+
         this.Status = value
     }
-    setSurehDetail(data) {
-        this.surahDetail = data
+    setSurehDetail(value) {
+        console.log('state verisi atanıyor ', value?.name);
+        this.surahDetail = value
     }
 
     getQuranList = async () => {
@@ -54,9 +56,18 @@ class GlobalStore {
         this.setLoading(true)
         return await GlobalServices.getSurahDetail(surahId)
             .then(response => {
+                console.log('response alındı sıkıntı yok');
                 this.setSurehDetail(response.data.data);
-            }).catch(err => this.setStatus(err.response.status))
-            .finally(() => this.setLoading(false))
+            }).catch(err => {
+                this.setStatus(err?.response?.status)
+                console.log('response alınamadı sıkıntı var');
+
+            })
+            .finally(() => {
+                this.setLoading(false)
+                console.log('response tamamlandı');
+
+            })
     }
 
 }

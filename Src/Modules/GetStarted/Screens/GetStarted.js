@@ -7,9 +7,9 @@ import { GetStartedStyle } from '../Styles';
 
 const GetStarted = ({ navigation }) => {
 
-    const Kuran = () => {
-        navigation.navigate('Kuran')
-    }
+    // const Kuran = () => {
+    //     navigation.navigate('Kuran')
+    // }
 
     return (
         <View style={GetStartedStyle.container}>
@@ -27,7 +27,7 @@ const GetStarted = ({ navigation }) => {
                 </View>
 
             </LinearGradient>
-            <TouchableOpacity style={GetStartedStyle.button} onPress={() => Kuran(console.log("QURAN OKU"))} >
+            <TouchableOpacity style={GetStartedStyle.button} onPress={() => navigation.navigate('Kuran')} >
                 <Text style={GetStartedStyle.buttonText} >Oku</Text>
             </TouchableOpacity>
         </View>
