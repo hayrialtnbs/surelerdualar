@@ -2,17 +2,14 @@ import React from 'react';
 import { View, Text, StatusBar, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Coins from '../../../Assets/Animations/Coins/Coins';
-import { AppColors } from '../../Global/Utils/AppColors';
 import { GetStartedStyle } from '../Styles';
 
-const GetStarted = ({ navigation }) => {
+const GetStarted = (props) => {
 
-    // const Kuran = () => {
-    //     navigation.navigate('Kuran')
-    // }
 
     return (
         <View style={GetStartedStyle.container}>
+            <Text>{""}</Text>
             <StatusBar backgroundColor={"#063221"} barStyle="dark-content" />
             <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
                 <Text style={{ fontSize: 30, fontWeight: "bold", fontStyle: "italic", color: "white", fontFamily: 'serif' }}>Dua ve Sureler</Text>
@@ -27,10 +24,11 @@ const GetStarted = ({ navigation }) => {
                 </View>
 
             </LinearGradient>
-            <TouchableOpacity style={GetStartedStyle.button} onPress={() => navigation.navigate('Kuran')} >
+            <TouchableOpacity style={GetStartedStyle.button} onPress={() =>  props.navigation.navigate('Kuran')} >
                 <Text style={GetStartedStyle.buttonText} >Oku</Text>
             </TouchableOpacity>
         </View>
     );
 };
 export default GetStarted;
+

@@ -1,5 +1,5 @@
-import React, { Component, useEffect } from 'react';
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import React, { Component, useEffect, useState } from 'react';
+import { View, Text, FlatList } from 'react-native';
 import GlobalStore from '../../Global/Store/index';
 import { KuranDetailStyle } from '../Styles';
 import LinearGradient from 'react-native-linear-gradient';
@@ -7,7 +7,9 @@ import LoadingKuran from '../../Global/Components/LoadingKuran';
 import useFetch from '../../Global/Utils/useFetch';
 import { API_URL } from '../../Global/Utils/ApiUrls';
 import { observer } from 'mobx-react';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Divider } from 'react-native-elements';
+import Toast from 'react-native-toast-message';
+
 
 
 const KuranDetail = (props) => {
@@ -25,9 +27,24 @@ const KuranDetail = (props) => {
         )
     }
 
-    // const turkceOku = async () => {
-    //     props.navigation.navigate('TurkceAnlam')
-    // }
+    const showToast = (item) => {
+
+        if (item.translation?.footnotes) {
+            Toast.show({
+                type: 'success', // success, error, info
+                text1: `${GlobalStore.surahDetail.name} `,  // Metnin ilk satırı 
+                text2: item.translation?.footnotes[0].text
+
+            });
+        } else {
+            Toast.show({
+                type: 'error', // success, error, info
+                text1: `${GlobalStore.surahDetail.name}`,  // Metnin ilk satırı 
+                text2: "Açıklama Yok"
+            });
+        }
+
+    }
 
 
     return (
@@ -38,17 +55,28 @@ const KuranDetail = (props) => {
                     <Text style={{ fontSize: 25, fontWeight: "bold", fontStyle: "italic", color: "white", fontFamily: 'serif' }}>{GlobalStore.surahDetail.name}</Text>
                 </View>
             </LinearGradient>
-            {/* <TouchableOpacity style={{ flexDirection: "row", alignSelf: "center" }} onPress={turkceOku}>
-                <Ionicons name='book-outline' size={25} color="white" />
-                <Text style={{ fontSize: 20, color: "white", fontWeight: "bold", fontFamily: 'serif', fontStyle: "italic" }}>Türkçe Anlamı Oku</Text>
-            </TouchableOpacity > */}
+
             <FlatList
                 data={GlobalStore.surahDetail?.verses}
                 renderItem={({ item, index }) => (
                     <View style={KuranDetailStyle.CardContainer}>
-                        <Text style={{ fontSize: 16, fontWeight: "bold", color: "white", fontFamily: 'serif' }}>{index + 1} - </Text>
-                        {/* <Text>{item.translation.text}</Text> */}
-                        <Text style={{ fontSize: 18, fontWeight: "bold", fontStyle: "italic", color: "white", fontFamily: 'serif' }}>{item?.transcription}</Text>
+                        <Text style={{ fontSize: 16, fontWeight: "bold", color: "white", fontFamily: 'serif' }}>{index + 1} -  </Text>
+                        <Text style={{ fontSize: 18, fontWeight: "bold", fontStyle: "italic", color: "white", fontFamily: 'serif', textAlign: "left" }}>{item?.verse}</Text>
+                        <Divider
+                            color='white'
+                            insetType='middle'
+                            width={1}
+                            style={{ marginTop: 16 }}
+                        />
+
+                        <Text style={{ fontSize: 16, fontWeight: "bold", fontStyle: "italic", color: "white", fontFamily: 'serif', marginTop: 10 }}>{item?.transcription}</Text>
+                        <Divider
+                            color='white'
+                            insetType='middle'
+                            width={1}
+                            style={{ marginTop: 16 }} />
+
+                        <Text style={{ fontSize: 16, fontStyle: "italic", marginTop: 10 }} onPress={() => showToast(item)}>{item?.translation.text}</Text>
                     </View>
                 )}
             />

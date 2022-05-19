@@ -7,17 +7,17 @@ import KuranCard from '../Components/KuranCard';
 import LoadingKuran from '../../Global/Components/LoadingKuran';
 import useFetch from '../../Global/Utils/useFetch';
 import { API_URL } from '../../Global/Utils/ApiUrls';
-import MySearch from '../../MySearch/Screens/MySearch';
 
 const Kuran = (props) => {
-    const { loading } = useFetch(API_URL);
+    console.log(props)
 
+    const { loading } = useFetch(API_URL);
     useEffect(() => {
         GlobalStore.getQuranList();
     }, []);
 
-    const handle = async (id) => {
-        props.navigation.navigate('KuranDetail', { id });
+    const handle = async (id, lang) => {
+        props.navigation.navigate('KuranDetail', { id});
     }
 
     if (loading) {
@@ -27,14 +27,13 @@ const Kuran = (props) => {
     }
 
     const renderKuranDetay = ({ item }) => (
-        <KuranCard item={item} onSelect={() => handle(item.id)} />
+        <KuranCard item={item} onSelect={() => handle(item.id)}  />
     );
 
 
     return (
         <View style={KuranPageStyle.container}>
             <StatusBar backgroundColor={"#063221"} barStyle="dark-content" />
-            {/* <MySearch /> */}
             <FlatList
                 data={GlobalStore.quranList}
                 renderItem={renderKuranDetay}

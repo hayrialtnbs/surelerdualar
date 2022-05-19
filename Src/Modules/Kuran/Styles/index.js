@@ -31,7 +31,7 @@ const KuranDetailStyle = StyleSheet.create({
     },
     CardContainer: {
         flex: 1,
-        margin: 15
+        margin: 15,
     },
     HeaderContainer: {
         alignItems:"center",
@@ -43,7 +43,9 @@ const KuranDetailStyle = StyleSheet.create({
         width: "90%",
         padding: 15,
         margin: 15
-    }
+    },
+    
+  
 })
 
 

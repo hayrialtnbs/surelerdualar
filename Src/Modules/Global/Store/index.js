@@ -3,9 +3,9 @@ import GlobalServices from '../Services';
 
 class GlobalStore {
     quranList = [];
+    surahDetail = {}
     Loading = false
     Status = 0
-    surahDetail = {}
 
     constructor() {
         makeObservable(this, {
