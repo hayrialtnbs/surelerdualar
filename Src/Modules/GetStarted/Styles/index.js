@@ -4,6 +4,8 @@ import { AppColors } from '../../Global/Utils/AppColors';
 const GetStartedStyle = StyleSheet.create({
     container: {
         flex: 1,
+        paddingTop: 200,
+    
         backgroundColor: '#063221',
     },
     iconCard: {
@@ -16,6 +18,11 @@ const GetStartedStyle = StyleSheet.create({
         flex: 1,
         borderRadius: 50
 
+    },
+    linearTwo:{
+        width: '100%',
+        borderRadius: 50,
+        height:50
     },
     card: {
         flex: 1,
@@ -53,11 +60,21 @@ const GetStartedStyle = StyleSheet.create({
         elevation: 19,
 
     },
+    buttonTwo:{
+        borderWidth: 0.5,
+        borderRadius: 25,
+        height: 60,
+        width: '70%',
+        margin: 15,
+        alignSelf: "center",
+        marginTop: 35,
+    },
     buttonText: {
         textAlign: "center",
         color: "white",
         fontSize: 18,
         fontWeight: "bold",
+        
     },
     sifreunuttum: {
         fontSize: 16,
